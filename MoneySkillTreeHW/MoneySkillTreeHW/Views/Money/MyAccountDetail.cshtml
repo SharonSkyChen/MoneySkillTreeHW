@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MoneySkillTreeHW.Models.ViewModels.MoneyViewModel>
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MoneyDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amt)
+                </th>
+
+            </tr>
+            @{ int seq = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(seq++)
+                    </td>
+                    <td>
+                        @(item.Type)
+                    </td>
+                    <td>
+                        @(item.MoneyDate.ToString("yyyy-MM-dd"))
+                    </td>
+                    <td>
+                        @(String.Format("{0:0,0}", item.Amt))
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
