@@ -1,2 +1,0 @@
-# MoneySkillTreeHW
-SkillTreeHW1
