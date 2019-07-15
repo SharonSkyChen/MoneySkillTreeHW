@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    int seq = 1;
 }
 <div class="row">
     <div class="col-md-12">
@@ -21,24 +22,26 @@
                 </th>
 
             </tr>
-            @{ int seq = 1; }
-            @foreach (var item in Model)
+            @if (Model != null)
             {
-                <tr>
-                    <td>
-                        @(seq++)
-                    </td>
-                    <td>
-                        @(item.Type)
-                    </td>
-                    <td>
-                        @(item.MoneyDate.ToString("yyyy-MM-dd"))
-                    </td>
-                    <td>
-                        @(String.Format("{0:0,0}", item.Amt))
-                    </td>
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @(seq++)
+                        </td>
+                        <td>
+                            @(item.Type)
+                        </td>
+                        <td>
+                            @(item.MoneyDate.ToString("yyyy-MM-dd"))
+                        </td>
+                        <td>
+                            @(String.Format("{0:0,0}", item.Amt))
+                        </td>
 
-                </tr>
+                    </tr>
+                }
             }
 
         </table>
