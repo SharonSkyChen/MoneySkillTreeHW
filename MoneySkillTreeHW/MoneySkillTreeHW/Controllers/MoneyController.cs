@@ -11,6 +11,13 @@ namespace MoneySkillTreeHW.Controllers
 {
     public class MoneyController : Controller
     {
+        private readonly MoneyService _mSvc;
+
+        public MoneyController()
+        {
+            _mSvc = new MoneyService();
+        }
+
         // GET: Money
         public ActionResult MyAccount()
         {
@@ -29,10 +36,8 @@ namespace MoneySkillTreeHW.Controllers
         /// <returns></returns>
         public ActionResult MyAccountDetail()
         {
-            MoneyService mSvc = new MoneyService();
-
             //改由service層取資料
-            var accBookList = mSvc.GetAccountList(100);
+            var accBookList = _mSvc.GetAccountList(100);
             
             return View(accBookList);
         }

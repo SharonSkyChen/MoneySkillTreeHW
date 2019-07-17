@@ -38,5 +38,11 @@ namespace MoneySkillTreeHW.Service
             }
             return accList;
         }
+
+        public void Save()
+        {
+            _accBookDB.SaveChanges();
+        }
+
     }
 }
