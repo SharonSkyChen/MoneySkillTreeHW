@@ -13,15 +13,6 @@ namespace MoneySkillTreeHW.Models
     using System.Collections.Generic;
     using System.Data.Entity;
 
-    public class AccountBookContext : DbContext
-    {
-        public AccountBookContext()
-            : base("name=SkillTreeHomeworkEntities")
-        {
-        }
-        public DbSet<AccountBook> AccountBooks { get; set; }
-    }
-
     public partial class AccountBook
     {
         public System.Guid Id { get; set; }

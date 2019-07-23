@@ -21,12 +21,18 @@ namespace MoneySkillTreeHW.Controllers
         // GET: Money
         public ActionResult MyAccount()
         {
+            List<SelectListItem> sList = _mSvc.EnumToSelectList<CategoryState>();
+
             return View();
         }
 
         [HttpPost]
         public ActionResult MyAccount(MoneyViewModel pAccData)
         {
+            //存檔
+            _mSvc.SaveAccount(pAccData);
+            _mSvc.Save();
+
             return View(pAccData);
         }
 
@@ -38,10 +44,10 @@ namespace MoneySkillTreeHW.Controllers
         {
             //改由service層取資料
             var accBookList = _mSvc.GetAccountList(100);
-            
+
             return View(accBookList);
         }
 
-       
+
     }
 }
