@@ -34,7 +34,7 @@ namespace MoneySkillTreeHW.Service
             {
                 accList.Add(new MoneyViewModel()
                 {
-                    Type = acc.Categoryyy == 1 ? "支出" : "收入",
+                    Category = acc.Categoryyy == 1 ? "支出" : "收入",
                     Amt = acc.Amounttt,
                     MoneyDate = acc.Dateee
                 });
@@ -53,9 +53,10 @@ namespace MoneySkillTreeHW.Service
             customers.Add(new AccountBook()
             {
                 Id = new Guid(),
-                Categoryyy = pMoneyObj?.Type.Trim() == "1" ? 1 : 0,
+                Categoryyy = pMoneyObj?.Category.Trim() == "1" ? 1 : 0,
                 Amounttt = (int)pMoneyObj.Amt,
-                Dateee = pMoneyObj.MoneyDate
+                Dateee = pMoneyObj.MoneyDate??DateTime.Today,
+                Remarkkk = pMoneyObj.Remark
             });
         }
 

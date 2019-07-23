@@ -12,21 +12,20 @@ namespace MoneySkillTreeHW.Controllers
         /// <summary>
         /// 日期檢核
         /// </summary>
-        /// <param name="pDate"></param>
+        /// <param name="MoneyDate"></param>
         /// <returns></returns>
-        public ActionResult TodayValid(DateTime? pDate)
+        [AllowAnonymous]
+        public ActionResult TodayValid(DateTime? MoneyDate)
         {
-            bool isValidate = true;
-            if (pDate == null)
-                isValidate = false;
-            else
+            bool isValidate = false;
+            if (MoneyDate != null)
             {
                 DateTime today = DateTime.Today;
-                DateTime inputDay = pDate.GetValueOrDefault();
-                if (DateTime.Compare(inputDay, today) > 0)
-                    isValidate = false;
+                DateTime inputDay = MoneyDate.GetValueOrDefault();
+                if (DateTime.Compare(inputDay, today) <= 0)
+                    isValidate = true;
             }
-
+               
             return Json(isValidate, JsonRequestBehavior.AllowGet);
         }
     }

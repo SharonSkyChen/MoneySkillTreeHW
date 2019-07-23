@@ -12,16 +12,25 @@ namespace MoneySkillTreeHW.Controllers
     public class MoneyController : Controller
     {
         private readonly MoneyService _mSvc;
-
+        private List<SelectListItem> _CateList;
         public MoneyController()
         {
             _mSvc = new MoneyService();
+
+            //預先取得類別的下拉選單
+            _CateList = new List<SelectListItem>() {
+                new SelectListItem(){
+                    Text = "",
+                    Value = ""
+                }
+            };
+            _CateList.AddRange(_mSvc.EnumToSelectList<CategoryState>());
         }
 
         // GET: Money
         public ActionResult MyAccount()
         {
-            List<SelectListItem> sList = _mSvc.EnumToSelectList<CategoryState>();
+            ViewData["CateList"] = _CateList;
 
             return View();
         }
@@ -29,9 +38,14 @@ namespace MoneySkillTreeHW.Controllers
         [HttpPost]
         public ActionResult MyAccount(MoneyViewModel pAccData)
         {
-            //存檔
-            _mSvc.SaveAccount(pAccData);
-            _mSvc.Save();
+            ViewData["CateList"] = _CateList;
+            if (ModelState.IsValid)
+            {
+                //存檔
+                _mSvc.SaveAccount(pAccData);
+                _mSvc.Save();
+                return View();
+            }
 
             return View(pAccData);
         }

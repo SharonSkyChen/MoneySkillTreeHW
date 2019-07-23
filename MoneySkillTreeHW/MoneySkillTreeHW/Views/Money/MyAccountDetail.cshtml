@@ -12,7 +12,7 @@
                     #
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Type)
+                    @Html.DisplayNameFor(model => model.Category)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.MoneyDate)
@@ -31,11 +31,11 @@
                             @(seq++)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Type)
+                            @Html.DisplayFor(modelItem => item.Category)
                         </td>
                         <td>
                             @*@Html.DisplayFor(modelItem => item.MoneyDate.ToString("yyyy-MM-dd"))*@
-                            @(item.MoneyDate.ToString("yyyy-MM-dd"))
+                            @(item.MoneyDate?.ToString("yyyy-MM-dd"))
                         </td>
                         <td>
                             @*@Html.DisplayFor(modelItem => item.Amt.ToString("{0:0,0}"))*@
