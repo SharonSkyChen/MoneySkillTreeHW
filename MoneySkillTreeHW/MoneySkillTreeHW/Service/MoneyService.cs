@@ -27,14 +27,14 @@ namespace MoneySkillTreeHW.Service
         /// <returns></returns>
         public IEnumerable<MoneyViewModel> GetAccountList(int pAccNum)
         {
-            var accData = _accBookDB.AccountBooks.Take(pAccNum).OrderBy(x => x.Dateee).ToList();
+            var accData = _accBookDB.AccountBooks.Take(pAccNum).OrderByDescending(x => x.Dateee).ToList();
             var accList = new List<MoneyViewModel>();
 
             foreach (var acc in accData)
             {
                 accList.Add(new MoneyViewModel()
                 {
-                    Category = acc.Categoryyy == 1 ? "支出" : "收入",
+                    Category = acc.Categoryyy.ToString(),// == 1 ? "支出" : "收入",
                     Amt = acc.Amounttt,
                     MoneyDate = acc.Dateee
                 });
@@ -52,7 +52,7 @@ namespace MoneySkillTreeHW.Service
             var customers = _accBookDB.Set<AccountBook>();
             customers.Add(new AccountBook()
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Categoryyy = pMoneyObj?.Category.Trim() == "1" ? 1 : 0,
                 Amounttt = (int)pMoneyObj.Amt,
                 Dateee = pMoneyObj.MoneyDate??DateTime.Today,

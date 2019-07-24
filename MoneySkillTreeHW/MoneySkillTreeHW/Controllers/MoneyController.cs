@@ -44,7 +44,8 @@ namespace MoneySkillTreeHW.Controllers
                 //存檔
                 _mSvc.SaveAccount(pAccData);
                 _mSvc.Save();
-                return View();
+                ModelState.Clear();
+                return View(new MoneyViewModel());
             }
 
             return View(pAccData);
